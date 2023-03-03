@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageVersion Include="Avalonia.Desktop" Version="0.10.999-cibuild0028716-beta" />
+        <PackageVersion Include="Avalonia.Desktop" Version="0.10.999-cibuild0030553-beta" />
         
         <PackageVersion Include="cef.redist.x64" Version="$(CefRedistVersion)" />
         <PackageVersion Include="cef.redist.osx64" Version="$(CefRedistOSXVersion)" />
