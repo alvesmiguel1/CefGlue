@@ -83,17 +83,10 @@ namespace ServiceStudio.Presenter {
             }
         }
 
-        public void ForceClose() { }
-        public int WindowLeft { get; }
-
         public void Show() {
             View.Show();
         }
-
-        public bool TryClose() {
-            return true;
-        }
-
+        
         private void OnSelectedViewChanged(ITopLevelView topLevelView) {
             // We don't use the 'SelectedTopLevelPresenter' to avoid recursion problems (RMAC-5706)
             // This is caused because 'SelectedTopLevelPresenter' interacts with view by changing the TabControl's currentIndex, what would trigger again a 'SelectedViewChanged';

@@ -1,8 +1,4 @@
 ﻿namespace ServiceStudio.View {
 
-    public interface IAggregatorView : ITopLevelView {
-
-    
-     
-    }
+    public interface IAggregatorView : ITopLevelView {}
 }

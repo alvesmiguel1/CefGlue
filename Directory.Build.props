@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
     <PropertyGroup>
-        <CefRedistVersion>106.0.26</CefRedistVersion>
-        <CefRedistOSXVersion>106.0.26</CefRedistOSXVersion>
-    </PropertyGroup>
-
-    <PropertyGroup>
-        <PackageOutputPath>$(MSBuildProjectDirectory)\..\Nuget\output</PackageOutputPath>
-        <Version>91.4472.31</Version>
-        <Authors>XiliumHQ,OutSystems</Authors>
-        <Product>CefGlue</Product>
-        <AssemblyTitle>CefGlue</AssemblyTitle>
-        <Description>CefGlue is a .NET binding for The Chromium Embedded Framework (CEF) by Marshall A. Greenblatt.</Description>
-        <Copyright>Copyright &#xA9; XiliumHQ 2021. Copyright &#xA9; OutSystems 2021.</Copyright>
-        <PackageDescription>ChromiumEmbedded. $(Description)</PackageDescription>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageTags>cef, chromium, chrome browser, cefglue</PackageTags>
-        <!-- <PackageIcon></PackageIcon> -->
-        <IncludeSymbols>false</IncludeSymbols>
-        <IncludeSource>false</IncludeSource>
-        <RepositoryUrl>https://github.com/OutSystems/CefGlue</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <NoWarn>$(NoWarn);NU5100;NU5118;CS1591</NoWarn>
         <AddSyntheticProjectReferencesForSolutionDependencies>false</AddSyntheticProjectReferencesForSolutionDependencies>
     </PropertyGroup>
-
 </Project>

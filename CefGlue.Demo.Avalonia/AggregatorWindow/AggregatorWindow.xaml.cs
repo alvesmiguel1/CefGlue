@@ -33,7 +33,6 @@ namespace ServiceStudio.WebViewImplementation {
 
         internal IEnumerable<TabItem> TabItems => tabs.Items.Cast<TabItem>();
 
-        //TODO HYBRID Finish
         private void OnSelectedTabChanged(object sender, SelectionChangedEventArgs e) {
             var tabItem = e.AddedItems.OfType<TabItem>().FirstOrDefault()?.Content as ITopLevelView;
 

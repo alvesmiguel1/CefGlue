@@ -13,10 +13,7 @@ namespace ServiceStudio.WebViewImplementation {
         private const int FacsimileShrinkageFactor = 3;
         private const string ImagesNamespace = "Xilium.CefGlue.Demo.Avalonia.AggregatorWindow.Images.";
         private const string GhostFacsimileLightImageUri = "resm:" + ImagesNamespace + "GhostTabWindow-Light@2x.png";
-        private const string GhostFacsimileDarkImageUri = "resm:" + ImagesNamespace + "GhostTabWindow-Dark@2x.png";
-        private const string DarkThemeTabBackgroundColor = "#202327";
         private const string LightThemeTabBackgroundColor = "#F7F8FA";
-        private const string DarkThemeTabBorderColor = "#ff3b3d41";
         private const string LightThemeTabBorderColor = "#ffe0e2e4";
 
         public static Window CreateGhostWindow() {

@@ -1,34 +1,23 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.Threading;
-using Avalonia.VisualTree;
 using ServiceStudio.Presenter;
 using ServiceStudio.View;
-using ServiceStudio.WebViewImplementation.Framework;
 
 namespace ServiceStudio.WebViewImplementation;
 
-/// <summary>
-/// Aggregator Window code section handling the drag drop of tab items
-/// </summary>
 partial class AggregatorWindow {
 
     private const int Epsilon = 11;
     private const int AdjustForCurvedCorners = 10;
     
     internal class ReAttachableTabDragDropStrategy : ITabDragDropStrategy {
-        private const string Context = "AggregatorWindow_TabDragDrop";
-
+        
         private Window ghostWindow;
         private Control ghostTab;
         private Control ghostFacsimile;
-
-        private Guid journeyId;
 
         private TabItem draggedTab;
         private string caption;
@@ -127,7 +116,6 @@ partial class AggregatorWindow {
 
                 isFirstMove = false;
                 isMoveInProgress = true;
-                journeyId = Guid.NewGuid();
                 SetPointerCapture(e.Pointer);
 
             } else {
@@ -265,10 +253,8 @@ partial class AggregatorWindow {
             {
                 return;
             }
-
-            var aggregatorWindow = aggregatorWindowPresenter.GetAggregatorView();
+            
             draggedTabTargetIndex = moveToIndex;
-
         }
 
         private void MoveTabBetweenWindows(

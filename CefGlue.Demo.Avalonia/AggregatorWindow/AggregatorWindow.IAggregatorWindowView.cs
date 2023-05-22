@@ -51,8 +51,6 @@ namespace ServiceStudio.WebViewImplementation {
                 var concreteAggregatorView = (AggregatorView)aggregatorView;
                 AddTab(concreteAggregatorView.TabHeader, concreteAggregatorView);
             });
-
-            // TODO RICT-2156
         }
 
         void IAggregatorWindowView.Show() {

@@ -5,8 +5,8 @@ using Avalonia.VisualTree;
 
 namespace ServiceStudio.WebViewImplementation {
     internal partial class AggregatorView : UserControl {
-        public AggregatorView() { }
 
+        public AggregatorView() { }
         public AggregatorView(TabHeaderInfo tabHeaderInfo) {
             AvaloniaXamlLoader.Load(this);
             var btn = this.FindControl<Button>("btn");

@@ -75,13 +75,7 @@ namespace ServiceStudio.WebViewImplementation {
         }
 
         internal Task TriggerClose() => close?.Invoke();
-
-        internal string TriggerToolTipRequested() => toolTipRequested?.Invoke() ?? string.Empty;
-
-        internal void SetCloseHandler(Func<Task> close) => this.close = close;
-
-        internal void SetToolTipRequestedHandler(Func<string> toolTipRequested) => this.toolTipRequested = toolTipRequested;
-
+        
         private void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
