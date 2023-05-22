@@ -57,7 +57,11 @@
     <AvaloniaResource Include="AggregatorWindow\AggregatorWindow.xaml" />
     <None Remove="Aggregator\AggregatorView.xaml" />
     <AvaloniaResource Include="Aggregator\AggregatorView.xaml" />
+    <EmbeddedResource Include="AggregatorWindow\**\*.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Node Remove="**\*.png" />
+  </ItemGroup>
 
 </Project>

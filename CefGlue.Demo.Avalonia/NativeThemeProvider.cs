@@ -13,7 +13,7 @@ namespace ServiceStudio.WebViewImplementation {
             Dark
         }
 
-        public static ThemeName Theme => ThemeName.Dark;
+        public static ThemeName Theme => ThemeName.Light;
 
         public static void Initialize() {
             LoadTheme();

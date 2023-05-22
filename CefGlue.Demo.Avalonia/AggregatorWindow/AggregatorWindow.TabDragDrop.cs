@@ -436,14 +436,31 @@ namespace ServiceStudio.WebViewImplementation
             return panel;
         }
 
+        private static int GetSizeForFacsimile(double currentSize, double minSize, int facsimileShrinkageFactor) =>
+            (double.IsNaN(currentSize) || currentSize < minSize) ? (int) (minSize/facsimileShrinkageFactor) : (int) (currentSize/facsimileShrinkageFactor);
+        
+        private const int FacsimileShrinkageFactor = 3;
+        
         private static Control CreateGhostSSFacsimile(string caption, double currentSSWindowWidth, double currentSSWindowHeight, IBrush backgroundBrush, IBrush foregroundBrush)
         {
-            var scaledWidth = 200;
-            var scaledHeight = 200;
+            var width = GetSizeForFacsimile(1792, 1080, FacsimileShrinkageFactor);
             // load bitmap image
+            var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
+            var ghostWindowThemeUri = GhostSSFacsimileLightImageUri;
 
-            var ghostContainer = new Canvas { Background = Brushes.Gray, Width = scaledWidth, Height = scaledHeight };
+            var bitmapOrig = new Bitmap(assets.Open(new Uri(ghostWindowThemeUri)));
+            var height = (int)(width * bitmapOrig.Size.Height / bitmapOrig.Size.Width);
+            var scaledBitmap = bitmapOrig.CreateScaledBitmap(new PixelSize(width, height));
+            var ghostTabImage = new Image {Source = scaledBitmap};
 
+            var ghostContainer = new Canvas {
+                Background = Brushes.Transparent,
+                Width = width,
+                Height = height
+            };
+            ghostContainer.Children.Add(ghostTabImage);
+            ghostTabImage.SetValue(Canvas.TopProperty, 0);
+            ghostTabImage.SetValue(Canvas.LeftProperty, 0);
 
             return ghostContainer;
         }
@@ -463,7 +480,6 @@ namespace ServiceStudio.WebViewImplementation
                 ShowInTaskbar = false,
                 Topmost = true,
                 WindowStartupLocation = WindowStartupLocation.Manual,
-                Position = windowPosition,
                 SizeToContent = SizeToContent.WidthAndHeight,
             };
         }
