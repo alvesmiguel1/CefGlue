@@ -16,9 +16,11 @@ namespace ServiceStudio.WebViewImplementation {
         private readonly TabControl tabs;
         private Action<ITopLevelView> selectedAggregatorChanged;
 
+        private readonly ITabDragDropStrategy tabDragDropStrategy;
         public AggregatorWindow() {
             AvaloniaXamlLoader.Load(this);
             tabs = this.FindControl<TabControl>("tabs");
+            tabDragDropStrategy = ReAttachableTabDragDropStrategy.GetInstance();
         }
 
         public static readonly StyledProperty<Thickness> TitleBarMarginProperty =
@@ -29,7 +31,7 @@ namespace ServiceStudio.WebViewImplementation {
             private set => SetValue(TitleBarMarginProperty, value);
         }
 
-        private IEnumerable<TabItem> TabItems => tabs.Items.Cast<TabItem>();
+        internal IEnumerable<TabItem> TabItems => tabs.Items.Cast<TabItem>();
 
         //TODO HYBRID Finish
         private void OnSelectedTabChanged(object sender, SelectionChangedEventArgs e) {
@@ -55,6 +57,11 @@ namespace ServiceStudio.WebViewImplementation {
 
             var tabHeaderInfo = (TabHeaderInfo)button.DataContext;
             tabHeaderInfo?.TriggerClose().ContinueWith(t => button.IsEnabled = true, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        
+        protected override void OnClosed(EventArgs e) {
+            tabDragDropStrategy.OnClosed();
+            base.OnClosed(e);
         }
 
         private int GetTabIndex(ITopLevelView topLevelView) => Array.IndexOf(TabItems.Select(t => t.Content).ToArray(), topLevelView);
@@ -86,7 +93,7 @@ namespace ServiceStudio.WebViewImplementation {
             tab.PointerLeave += delegate { OnMouseLeft(); };
             tab.Tapped += delegate { OnMouseLeft(); };
             tab.LostFocus += delegate { OnMouseLeft(); };
-            tab.PointerPressed += OnPointerPressed;
+            tab.PointerPressed += (sender, e) => tabDragDropStrategy.OnPointerPressed(this, sender, e);;
             AddDragDropHandlers(tab);
 
             var pos = ((IList)tabs.Items).Add(tab);
@@ -97,7 +104,6 @@ namespace ServiceStudio.WebViewImplementation {
 
             if (tabs.SelectedIndex == index) {
                 tabs.SelectedIndex = index - 1;
-                tabItemSelectedForDragDrop = null;
             }
 
             var itemsList = (IList<object>)tabs.Items;

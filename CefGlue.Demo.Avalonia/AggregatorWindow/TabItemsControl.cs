@@ -11,7 +11,7 @@ namespace ServiceStudio.WebViewImplementation {
 
     internal class TabItemsControl : Grid, IPanel {
 
-        private class InnerTabItemsControl : StackPanel {
+        internal class InnerTabItemsControl : StackPanel {
 
             private const int TabItemMaxWidth = 232;
             private const int TabItemMinWidth = 80;
