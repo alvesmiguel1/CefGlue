@@ -6,5 +6,6 @@
 
     <ItemGroup>
         <PackageVersion Include="Avalonia.Desktop" Version="0.10.21" />
+        <PackageVersion Include="cef.redist.osx64" Version="$(CefRedistOSXVersion)" />
     </ItemGroup>
 </Project>
